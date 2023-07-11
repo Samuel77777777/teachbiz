@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  height: 60vh;
+  background-image: url("/assets/hero.png"),
+    linear-gradient(to left, #d9d9d9, #d9d9d9);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: center;
+  flex: shrink;
+  position: relative;
+}
+
+.down {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.drop {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  border-radius: 10px;
+  border: 1px solid #fff;
+  background: rgba(255, 255, 255, 0);
+  box-shadow: 0px 4px 4px 0px #000;
+  padding: 10px;
+  gap: 10px;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  color: #fff;
+  text-align: center;
+  font-size: 25px;
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  background-color: transparent;
+}
+
+.text {
+  margin-top: 280px;
+  color: #fff;
+  text-align: center;
+  font-size: 64px;
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.download button {
+  color: #000;
+  font-size: 16px;
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  width: 153px;
+  padding: 10px;
+  align-items: flex-start;
+  gap: 10px;
+  background: #c7db00;
+  position: absolute;
+  right: 70px;
+}
+
+
+
+@media (max-width: 768px) {
+
+  .text{
+    font-size: 42px
+  }
+ 
+
+  .download  button{
+    margin-top: 20px;
+right: 40px;
+  }
+  
+}
