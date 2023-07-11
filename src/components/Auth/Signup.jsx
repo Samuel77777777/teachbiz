@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
 
 const SignUp = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+  const [error, setError] = useState('');
+
+
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (name === '' || email === '' || password === '') {
+      alert('Please enter all of the required fields.');
+    } else {
+      // Do something with the form data.
+    }
+
+    console.log(name, email, phone, password)
+  }
+
+
+
   return (
     <Div>
       <div className="form">  
@@ -12,11 +33,11 @@ const SignUp = () => {
 
 
 
-      <div className="form">
+      <form className="form"  onSubmit={handleClick}>
       <div className="username  input-1">
               <img src="assets/password.png" alt=""  />
             <div className="inputBox">
-                <input type="password" required="required"/>
+                <input type="text" required="required"  value={name}  onChange={(e) => setName(e.target.value)} error={error}/>
                 <span>Name</span>
             </div>
             </div>
@@ -24,11 +45,11 @@ const SignUp = () => {
             <div className="username  input-1">
               <img src="assets/password.png" alt=""  />
             <div className="inputBox">
-                <input type="password" required="required"/>
+                <input type="text" required="required" value={email}  onChange={(e) => setEmail(e.target.value)}/>
                 <span>Email</span>
             </div>
             </div>
-           
+
 
            
 
@@ -37,7 +58,7 @@ const SignUp = () => {
               <div className="username  input-1">
               <img src="assets/password.png" alt=""  />
             <div className="inputBox">
-                <input type="password" required="required"/>
+                <input type="tel" required="required" value={phone}  onChange={e => setPhone(e.target.value)}/>
                 <span>Phone</span>
             </div>
             </div>
@@ -47,7 +68,7 @@ const SignUp = () => {
             <div className="username">
               <img src="assets/email.png" alt="" />
             <div className="inputBox">
-                <input type="password" required="required"/>
+                <input type="password" required="required" value={password} onChange={e => setPassword(e.target.value)}/>
                 <span>Password</span>
             </div>
             </div>
@@ -55,7 +76,7 @@ const SignUp = () => {
 
            
 
-          <button className="login">
+          <button className="login" type='submit'>
             Sign up
           </button>
           <h4 style={{marginBottom: 40}}>If already have an account <a href="" className="reg">Sign up</a> </h4>
@@ -73,7 +94,7 @@ const SignUp = () => {
 
     
 
-      </div>
+      </form>
 
     
 
