@@ -1,330 +1,401 @@
-import React from 'react';
-import { styled } from 'styled-components';
+import { useState } from "react";
+import { styled } from "styled-components";
+import { faEye } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prevVisible) => !prevVisible);
+  };
+
+  const {
+    reset,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+
+    reset();
+  };
+
   return (
     <Div>
-      <div className="form">  
-      <h3 className="log">Login</h3>
-
-       <div className="circle">
-       <img src="assets/circle.png" alt=""  />
-      
-        <h3>The user</h3>
-       </div>
-     
-
-
-
       <div className="form">
+        <h3 className="log">Login</h3>
 
-      
-              <div className="username  input-1">
-              <img src="assets/password.png" alt=""  />
-            <div className="inputBox">
-                <input type="password" required="required"/>
-                <span>Username</span>
+        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+          {/* <div className="input_container"> */}
+
+          <div className="input_container">
+            <img src="assets/password.png" alt="" className="rex1" width={20} />
+            <input
+              name="input-name"
+              placeholder="name@mail.com"
+              type="text"
+              className="input_field"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Invalid email address",
+                },
+              })}
+            />
+            <br />
+            <span className="error">{errors.email?.message}</span>
+          </div>
+
+          {/* </div> */}
+
+          <div className="input_container">
+            <img src="assets/password.png" alt="" className="rex1" width={20} />
+            <input
+              placeholder="name@mail.com"
+              name="input-password"
+              className="input_field"
+              {...register("password", { required: "Password is required" })}
+              type={passwordVisible ? "password" : "text"}
+            />
+            <div onClick={togglePasswordVisibility} className="me-icon">
+              {passwordVisible ? (
+                <FontAwesomeIcon icon={faEyeSlash} />
+              ) : (
+                <FontAwesomeIcon icon={faEye} />
+              )}
             </div>
-            </div>
-           
+            <br />
+            <span className="error"> {errors.password?.message}</span>
+          </div>
 
-
-            <div className="username">
-              <img src="assets/email.png" alt="" />
-            <div className="inputBox">
-                <input type="password" required="required"/>
-                <span>Password</span>
-            </div>
-            </div>
-             
-
-             <p className="forgot"> Forgot Password</p>
-
-          <button className="login">
+          {/*
+          {/* // icon goees */}
+          <p className="forgot">Forgot Password?</p>
+          <button className="login" type="submit">
             Login
           </button>
-          <h4 style={{marginBottom: 40}}>If you don't have an account  <a href="" className="reg">Register here</a> </h4>
-    
-        <h4>Or Sign up Using.......</h4>
-      <div className="social-login">
-        <button className="google">
-        <img src="assets/google.png" alt="" />
-        </button>
-        <button className='twitter'>
-          <img src="assets/twit.png" alt="" />
-        </button>
-
+          <h4 style={{ marginBottom: 10 }}>
+            If you dont have an account{" "}
+            <Link to="/signup" className="reg">
+              register here
+            </Link>{" "}
+          </h4>
+          <h4>Or Login Using.......</h4>
+          <div className="social-login">
+            <button className="google">
+              <img src="assets/google.png" alt="" />
+            </button>
+            <button className="twitter" type="">
+              <img src="assets/twit.png" alt="" type />
+            </button>
+          </div>
+        </form>
       </div>
 
-    
-
+      <div className="sec-2">
+        <img src="assets/login.png" alt="" width="100%" />
       </div>
-
-    
-
-      </div>
-
-        <div className="sec-2">
-          <img src="assets/login.png" alt="" width="100%" />
-
-        </div>
-
-
     </Div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
 
 const Div = styled.div`
-display: flex;
-justify-content: space-between;
-gap: 40px;
-
-
-
-.form{
-  align-items: center;
   display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  height: 100vh;
-   width: 100%;
-}
-
-.log{
-  margin-top: 58px;
-  color: #000;
-text-align: center;
-font-family: sans-serif;
-font-size: 40px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-margin-bottom: 52px;
-}
-
-.circle h3{
-margin: 12px;
-color: #000;
-text-align: center;
-font-family: sans-serif;
-font-size: 21px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-}
-
-
-
-
-.inputBox
- {
-  position: relative;
-  width: 250px;
-}
-
-.inputBox input {
-  width: 100%;
-  padding: 10px;
-  outline: none;
-  border: none;
-  color: #000;
-  font-size: 1em;
-  background: transparent;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.50);
-  transition: 0.1s;
-
-}
-
-.inputBox span {
-  margin-top: 5px;
-  position: absolute;
-  left: 0;
-  transform: translateY(-4px);
-  margin-left: 10px;
-  padding: 10px;
-  pointer-events: none;
-  font-size: 12px;
-  font-family: sans-serif;
-  color: #000;
-  text-transform: uppercase;
-  transition: 0.5s;
-  border-radius: 8px;
-}
-
-.inputBox input:valid~span,
-.inputBox input:focus~span {
-  transform: translateX(113px) translateY(-15px);
-  font-size: 0.8em;
-  padding: 5px 10px;
-  background: rgba(0, 0, 0, 0.50);
-  letter-spacing: 0.2em;
-  color: #fff;
-  border: 2px;
-}
-
-
-.inputBox input:valid,
-.inputBox input:focus {
-  border: 2px solid #000;
-  border-radius: 8px;
-}
-
-
-.form{
-  margin-top:115px;
-}
-
-.username{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.input-1{
-margin-bottom:50px;
-
-}
-
-.username img{
-  object-fit: cover;
-  width:24px;
-  height: 24px;
-  margin-right: 5px;
-
-}
-
-
-
-.login{
-  border-radius: 8px;
-background: #C7DB00;
-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-color: #FFF;
-text-align: center;
-font-family: Rubik;
-font-size: 21px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-margin-top: 50px;
-margin-bottom: 10px;
-}
-
-h4{
-  color: #000;
-font-family: Rubik;
-font-size: 21px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-
-margin-bottom: 20px;
-}
-
-
-.social-login{
-  display: flex;
+  justify-content: space-between;
   gap: 20px;
-}
+  height: 550px;
+  box-shadow: 0px 106px 42px rgba(0, 0, 0, 0.01),
+    0px 59px 36px rgba(0, 0, 0, 0.05), 0px 26px 26px rgba(0, 0, 0, 0.09),
+    0px 7px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 11px;
+  width: 800px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
 
-.google{ 
-  border: none;
-  padding: 18px;
-border-radius: 9px;
-background: #FFF;
-box-shadow: 0px 4px 4px 0px rgba(250, 11, 11, 0.99);
-}
-
-.twitter{
-  border: none;
-  padding: 18px;
-  border-radius: 9px;
-background: #FFF;
-box-shadow: 0px 4px 4px 0px #3771C8;
-}
-
-.forgot{
-  margin-top: 30px;
-  color: #000;
-  text-decoration: none;
-}
-
-.reg{
-text-decoration: none;
-  
-}
-
-a:hover{
-  color:  #C7DB00;
-  cursor: pointer;
-  text-decoration: underline;
-}
-.forgot:hover{
-  color:  #C7DB00;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-
-
-
-.login:hover{
-  transform: translateY(-0.33em);
-}
-
-.login:active {
-
-  transform: translateY(0);
-}
-
-.google,.twitter:hover {
-
-  transform: translateY(-0.33em);
-}
-
-.google,.twitter:active {
-
-  transform: translateY(0);
-}
-.google:hover {
-
-transform: translateY(-0.33em);
-}
-
-.google:active {
-
-transform: translateY(0);
-}
-
-
-
-.sec-2 img{
-  height: 100vh;
-  object-fit: cover;
-  justify-content: center;
-
-}
-
-@media (max-width: 1024px) {
-  display: block;
-
-
-.log{
-  margin-top: 0px;
-}
-
-  .sec-2{
-    display: none;
+  .sec-2 {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 
-.social-login{
-  margin-bottom: 20px;
-}
-  
-}
+  .form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    gap: 10px;
+  }
 
+  .log {
+    color: #000;
+    text-align: center;
+    font-family: "inter", sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 25px;
+  }
 
+  .login {
+    width: 8.2rem;
+    padding: 0.625rem 0.9375rem;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    border-radius: 0.5rem;
+    background: #c7db00;
+    border: #c7db00;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #000;
 
+    font: 700 18px "Josefin Sans", sans-serif;
+    transition: all 1s ease;
+    transform: translateY(-0.2em);
+    transition: transform 0.1s ease;
+  }
+
+  h4 {
+    color: #000;
+    font-family: "Rubik", sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 20px;
+  }
+
+  .social-login {
+    display: flex;
+    gap: 20px;
+  }
+
+  .google {
+    border: none;
+    padding: 18px;
+    border-radius: 9px;
+    background: #fff;
+    box-shadow: 0px 4px 4px 0px rgba(250, 11, 11, 0.99);
+    transform: translateY(-0.2em);
+    transition: transform 0.1s ease;
+  }
+
+  .twitter {
+    border: none;
+    padding: 18px;
+    border-radius: 9px;
+    background: #fff;
+    box-shadow: 0px 4px 4px 0px #3771c8;
+    transform: translateY(-0.2em);
+    transition: transform 0.1s ease;
+  }
+
+  .forgot {
+    margin-top: 40px;
+    margin-right: 120px;
+    text-decoration: none;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.37);
+    font-family: "Rubik", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .reg {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.37);
+  }
+
+  a:hover {
+    color: #c7db00;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .forgot:hover {
+    color: #c7db00;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .login:hover {
+    transform: translateY(-0.33em);
+  }
+
+  .login:active {
+    transform: translateY(0);
+  }
+
+  .google,
+  .twitter:hover {
+    transform: translateY(-0.33em);
+  }
+
+  .google,
+  .twitter:active {
+    transform: translateY(0);
+  }
+  .google:hover {
+    transform: translateY(-0.33em);
+  }
+
+  .google:active {
+    transform: translateY(0);
+  }
+
+  .sec-2 img {
+    height: 100vh;
+    object-fit: cover;
+    justify-content: center;
+  }
+
+  @media (max-width: 764px) {
+    padding: 20px;
+  }
+
+  @media (max-width: 1024px) {
+    display: block;
+
+    .log {
+      margin-top: 0px;
+    }
+
+    .sec-2 {
+      display: none;
+    }
+
+    .social-login {
+      margin-bottom: 20px;
+    }
+  }
+
+  .input_container {
+    width: 260px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .rex1 {
+    width: 20px;
+    position: absolute;
+    z-index: 99;
+    left: 12px;
+
+    top: 10px;
+  }
+
+  .rex {
+    width: 20px;
+    position: absolute;
+    z-index: 99;
+    left: 12px;
+    bottom: 9px;
+  }
+
+  .input_field {
+    width: auto;
+    height: 40px;
+    padding: 0 0 0 40px;
+    border-radius: 5px;
+    outline: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  }
+
+  .input_field:focus {
+    border: 1px solid transparent;
+    box-shadow: 0px 0px 0px 2px #242424;
+    background-color: transparent;
+  }
+  .me-icon {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+  }
+
+  .error {
+    color: rgba(250, 11, 11, 0.99);
+    font-family: "Josefin sans", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    position: absolute;
+    top: 45px;
+    left: 5px;
+  }
+  .error2 {
+    color: rgba(250, 11, 11, 0.99);
+    font-family: "Josefin sans", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+  }
 `;
+
+// import React from "react";
+// import { useForm } from "react-hook-form";
+
+// const Login = () => {
+//   const {
+//     register,
+//     handleSubmit,
+//     formState: { errors },
+//   } = useForm({
+//     defaultValues: {
+//       firstName: "",
+//       lastName: "",
+//     },
+//   });
+//   console.log(errors);
+
+//   return (
+//     <div>
+//       <form
+//         action=""
+//         onSubmit={handleSubmit((data) => {
+//           console.log(data);
+//         })}
+//       >
+//         <input
+//           {...register("firstName", { required: "This is required" })}
+//           placeholder="First Name"
+//         />
+//         <p>{errors.firstName?.message}</p>
+//         <input
+//           {...register("lastName", {
+//             required: "This is required.",
+//             minLength: { value: 4, message: "Min Length 4" },
+//           })}
+//           placeholder="Last Name"
+//         />
+//         <p>{errors.lastName?.message}</p>
+//         <input type="submit" />
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default Login;

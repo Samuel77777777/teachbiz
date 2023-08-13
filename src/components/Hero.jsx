@@ -2,13 +2,17 @@
 import React from "react";
 import Navbar from "./nav-component/Navbar";
 import "./hero.css";
-import Dropdown from "./Dropdown";
+import Search from "./nav-component/Search";
+// import TestSearch from "./nav-component/TestSearch";
 
 const Hero = () => {
   return (
     <div className="main">
       <Navbar />
-      <Dropdown />
+
+      <div className="serc">
+        <Search />
+      </div>
 
       <p className="text">
         The Best of Salone <br /> at your finger tip.

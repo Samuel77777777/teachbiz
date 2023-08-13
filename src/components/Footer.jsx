@@ -1,11 +1,10 @@
-import React from 'react';
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 const Footer = () => {
   return (
     <Div>
-        <footer className="footer">
-            <div className="list">
+      <footer className="footer">
+        {/* <div className="list">
                 <ul className="list-1"> 
                     <h3>Home</h3>
                     <li>Pope</li>
@@ -49,117 +48,195 @@ const Footer = () => {
                 </div>
           
             </div>
-            </div>
+            </div> */}
 
- 
+        <div className="one">
+          <div className="logo">
+            <img src="assets/loggo.jpg" alt="" width={90} height={90} />
+          </div>
 
-        </footer>
+          <div className="list">
+            <h2>About</h2>
+            <ul>
+              <li>Techbiz</li>
+              <li>Pecuilar Lab</li>
+              <li>Techbiz</li>
+            </ul>
+          </div>
 
+          <div className="list">
+            <h2>Discover</h2>
+            <ul>
+              <li>Techbiz</li>
+              <li>Pecuilar Lab</li>
+              <li>Techbiz</li>
+              <li>Techbiz</li>
+            </ul>
+          </div>
 
+          <div className="list">
+            <h2>Techbiz for Business</h2>
+            <ul>
+              <li>Techbiz</li>
+              <li>Pecuilar Lab</li>
+              <li>Techbiz</li>
+              <li>Techbiz</li>
+            </ul>
+          </div>
 
+          <div className="follow">
+            <h2>Follow Us</h2>
+
+            <ul>
+              <img src="assets/gog.png" alt="" />
+              <img src="assets/twitter.png" alt="" />
+            </ul>
+          </div>
+        </div>
+
+        <div className="two">
+          <div className="copy">
+            <p> Copright </p>
+            <img src="assets/copy.png" alt="" />{" "}
+            <p> 2023 Techbiz | Powered by Peculiar Labs </p>
+          </div>
+        </div>
+      </footer>
     </Div>
-  )
-}
+  );
+};
 
 export default Footer;
 
 const Div = styled.div`
-
-.footer{
+  .footer {
     width: 100% !important;
-    height: 600px;
-    background: #D9D9D9;
+    height: 491px;
+    background: #c7db00;
     margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
+    .one {
+      display: flex;
+      justify-content: center;
+      gap: 100px;
+      margin-top: 10px;
+    }
 
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      height: 297px;
+    }
 
+    .list h2 {
+      color: #000;
+      font-family: "Josefin Sans", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+    .list ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-    .list{
-        margin-left: 70px;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 40px;
-        justify-content: space-evenly;
-      
+    .list ul li {
+      color: #000;
+      font-family: "Josefin Sans", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-decoration: none;
+      list-style: none;
+    }
 
+    .follow {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
 
-        .list-1{
-  align-items: center;
-    gap: 30px;
-            h3{
-         
-color: rgba(0, 0, 0, 0.62);
-text-align: center;
-font-family: Josefin Sans;
-font-size: 30px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-            }
-            
+    .follow h2 {
+      color: #000;
+      font-family: "Josefin Sans", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
 
-      li{
-        list-style: none;
-        margin: 20px 0px;
+    .follow ul {
+      display: flex;
+      gap: 20px;
+    }
+
+    .two {
+    }
+
+    .two .copy {
+      display: flex;
+      gap: 5px;
+
+      text-align: center;
+      justify-content: center;
+      color: #000;
+      text-align: center;
+      font-family: "Josefin sans", sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      align-items: center;
+      // position:relative;
+    }
+    .two .copy span {
+      width: 20px;
+      height: 20px;
+      background: red;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+
+    // .two p img{
+    //   position:absolute;
+    //   top:1px;
+
+    // }
+
+    .socials img:hover {
+      transform: scale(105%);
+      animation: beatingHeart 1.2s infinite;
+    }
+
+    @keyframes beatingHeart {
+      0% {
+        transform: scale(1);
       }
-      li:hover{
-        text-decoration: underline;
+
+      15% {
+        transform: scale(1.15);
       }
-        
+
+      30% {
+        transform: scale(1);
+      }
+
+      45% {
+        transform: scale(1.15);
+      }
+
+      60% {
+        transform: scale(1);
+      }
     }
-    }
-
-    .socials{
-        display: block;
-        gap: 20px;
-
-
-    }
-
-    .socials img{
-        width: 60px;
-        height: 60px;
-        object-fit: cover;
-       
-
-    }
-
-
-    .socials img:hover{ 
-         transform: scale(105%);
-  animation: beatingHeart 1.2s infinite;
-
-    }
-
-    
-  
-
-  
-
-@keyframes beatingHeart {
-  0% {
-    transform: scale(1);
   }
-
-  15% {
-    transform: scale(1.15);
-  }
-
-  30% {
-    transform: scale(1);
-  }
-
-  45% {
-    transform: scale(1.15);
-  }
-
-  60% {
-    transform: scale(1);
-  }
-}
-}
-
-
 `;
-

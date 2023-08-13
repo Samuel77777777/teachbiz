@@ -1,38 +1,39 @@
-
-h1{
- color: #000;
-text-align: center;
-font-family: Rubik;
-font-size: 21px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-text-align: center;
-margin-top: 182px;
-margin-bottom: 183px;
+h1 {
+  color: #000;
+  text-align: center;
+  font-family: "Josefin  sans", sans-serif;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: center;
+  margin-top: 182px;
+  margin-bottom: 183px;
 }
 
-
-
-.car{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    gap: 20px;
-
+.car {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.img-txt{
-    text-align: center;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+.img-txt {
+  text-align: center;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transform: translateY(-0.2em);
+  transition: transform 0.5s ease;
 }
-.img-txt p{
-    color: #000;
-text-align: center;
-font-family: Josefin Sans;
-font-size: 21px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
 
+.img-txt p {
+  color: #000;
+  text-align: center;
+  font: 400 21px "Josefin Sans", sans-serif;
+  line-height: normal;
+  margin-bottom: 5px;
+}
+
+.img-txt:hover {
+  color: #ffffff;
+  transform: scale(1.1);
 }
