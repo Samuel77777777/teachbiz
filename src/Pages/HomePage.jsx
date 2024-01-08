@@ -6,9 +6,11 @@ import Hero from "../components/Hero";
 import Category from "../Category";
 import Footer from "../components/Footer";
 import { styled } from "styled-components";
-import CardTest from "../components/Card-components/Card-test";
+import Card from "../components/Card-components/Card";
 
 const HomePage = () => {
+  //this is the data that's in the review cards at the homepage
+
   const cardsData = [
     {
       id: 1,
@@ -89,11 +91,15 @@ const HomePage = () => {
 
   return (
     <Div>
+      {/* hero section  starts here but more info is in the hero component*/}
       <Hero />
       <h1 className="recent">Recent Activities</h1>
+
+      {/* 
+      review card section starts here */}
       <div className="cards">
         {cardsData.map((card, id) => (
-          <CardTest
+          <Card
             key={id}
             name={card.name}
             image={card.image}
@@ -102,6 +108,7 @@ const HomePage = () => {
           />
         ))}
       </div>
+      {/* review card section ends here */}
 
       <Category />
       <Footer />
@@ -154,6 +161,24 @@ const Div = styled.div`
     .cards {
       grid-template-columns: repeat(1, 1fr);
       justify-content: center; /* Adjust for smaller screens */
+      margin:20px;
+    }
+
+
+    // .down{
+    //   gap:5px;
+    //   display:flex;
+    //   flex-wrap:wrap;
+    //   margin-top:90px;
+    //   max-width:100%;
+    //   border:1px solid red;
+    // }
+    .main-drop{
+      // border:1px solid red;
+      display:none;
+      // flex-wrap:wrap;
+      // flex-direction:column;
+    
     }
   }
 `;

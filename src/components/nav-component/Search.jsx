@@ -5,20 +5,7 @@ import { styled } from "styled-components";
 // import { useHistory } from "react-router-dom";
 
 const Search = () => {
-  // const history = useHistory();
-
-  // const [selected, setSelected] = useState("");
-
-  // const handleSelections = (event) => {
-  //   setSelected(event.target.value);
-  // };
-
-  // const handleSearch = (event) => {
-  //   event.preventDefault();
-  //   if (selected) {
-  //     // history.push("./find");
-  //   }
-  // };
+  // this is the glodal searchbar
 
   return (
     <Div>
@@ -38,8 +25,9 @@ const Search = () => {
             id="dropdown"
             // value={selected}
             // onChange={handleSelections}
+            defaultValue={"Filter by"}
           >
-            <option value="" disabled hidden>
+            <option value="" disabled selected hidden>
               {" "}
               Filer by <img src="assets/arrowdown.png" alt="" />{" "}
             </option>
@@ -102,16 +90,18 @@ const Div = styled.div`
   }
   .deep select {
     width: 100%;
-    padding: 16px 52px 16px 42px;
+    padding: 16px 20px 16px 20px;
     border-radius: 15px;
     border: none;
     text-align: center;
     color: rgba(0, 0, 0, 0.38);
     font: 300 19px "Josefin sans", sans-serif;
     outline: none;
+
   }
   .deep select option {
     text-align: left;
+  
   }
 `;
 

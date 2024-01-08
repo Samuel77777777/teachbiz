@@ -7,11 +7,15 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
+  // this is the state that handles the password eye toggle
+
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible((prevVisible) => !prevVisible);
   };
+
+  // I use react hook form to handle the validation
 
   const {
     reset,
@@ -28,17 +32,23 @@ const Login = () => {
 
   return (
     <Div>
-      <div className="form">
-        <h3 className="log">Login</h3>
+      <div className="login-form">
+        <h3 className="login-heading">Login</h3>
 
-        <form className="form" onSubmit={handleSubmit(onSubmit)}>
-          {/* <div className="input_container"> */}
+        {/* the login form    */}
 
+        <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+          {/* email field */}
           <div className="input_container">
-            <img src="assets/password.png" alt="" className="rex1" width={20} />
+            <img
+              src="assets/password.png"
+              alt=""
+              className="input-icon"
+              width={20}
+            />
             <input
               name="input-name"
-              placeholder="name@mail.com"
+              placeholder="Email"
               type="text"
               className="input_field"
               {...register("email", {
@@ -55,16 +65,22 @@ const Login = () => {
 
           {/* </div> */}
 
+          {/* password field */}
           <div className="input_container">
-            <img src="assets/password.png" alt="" className="rex1" width={20} />
+            <img
+              src="assets/password1.png"
+              alt=""
+              className="input-icon"
+              width={20}
+            />
             <input
-              placeholder="name@mail.com"
+              placeholder="Password"
               name="input-password"
               className="input_field"
               {...register("password", { required: "Password is required" })}
               type={passwordVisible ? "password" : "text"}
             />
-            <div onClick={togglePasswordVisibility} className="me-icon">
+            <div onClick={togglePasswordVisibility} className="password-toggle">
               {passwordVisible ? (
                 <FontAwesomeIcon icon={faEyeSlash} />
               ) : (
@@ -77,29 +93,36 @@ const Login = () => {
 
           {/*
           {/* // icon goees */}
-          <p className="forgot">Forgot Password?</p>
-          <button className="login" type="submit">
+
+          <Link to="/resetpassword" className="forgot-password-link">
+            Forgot Password?
+          </Link>
+
+          {/* login button    */}
+          <button className="login-button" type="submit">
             Login
           </button>
           <h4 style={{ marginBottom: 10 }}>
             If you dont have an account{" "}
-            <Link to="/signup" className="reg">
+            <Link to="/signup" className="register-link">
               register here
             </Link>{" "}
           </h4>
           <h4>Or Login Using.......</h4>
-          <div className="social-login">
-            <button className="google">
-              <img src="assets/google.png" alt="" />
+          {/* 
+          social media login buttons */}
+          <div className="social-login-button">
+            <button className="google-login-button">
+              <img src="assets/google.png" alt="Google" />
             </button>
-            <button className="twitter" type="">
+            <button className="twitter-login-button" type="">
               <img src="assets/twit.png" alt="" type />
             </button>
           </div>
         </form>
       </div>
 
-      <div className="sec-2">
+      <div className="image-container">
         <img src="assets/login.png" alt="" width="100%" />
       </div>
     </Div>
@@ -112,7 +135,7 @@ const Div = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  height: 550px;
+  height: 580px;
   box-shadow: 0px 106px 42px rgba(0, 0, 0, 0.01),
     0px 59px 36px rgba(0, 0, 0, 0.05), 0px 26px 26px rgba(0, 0, 0, 0.09),
     0px 7px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
@@ -124,13 +147,13 @@ const Div = styled.div`
   transform: translate(-50%, -50%);
   overflow: hidden;
 
-  .sec-2 {
+  .image-container {
     width: 100%;
     height: 100%;
     overflow: hidden;
   }
 
-  .form {
+  .login-form {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -140,7 +163,7 @@ const Div = styled.div`
     gap: 10px;
   }
 
-  .log {
+  .login-heading {
     color: #000;
     text-align: center;
     font-family: "inter", sans-serif;
@@ -151,7 +174,7 @@ const Div = styled.div`
     margin-bottom: 25px;
   }
 
-  .login {
+  .login-button {
     width: 8.2rem;
     padding: 0.625rem 0.9375rem;
     margin-top: 50px;
@@ -178,12 +201,12 @@ const Div = styled.div`
     margin-bottom: 20px;
   }
 
-  .social-login {
+  .social-login-button {
     display: flex;
     gap: 20px;
   }
 
-  .google {
+  .google-login-button {
     border: none;
     padding: 18px;
     border-radius: 9px;
@@ -193,7 +216,7 @@ const Div = styled.div`
     transition: transform 0.1s ease;
   }
 
-  .twitter {
+  .twitter-login-button {
     border: none;
     padding: 18px;
     border-radius: 9px;
@@ -203,7 +226,7 @@ const Div = styled.div`
     transition: transform 0.1s ease;
   }
 
-  .forgot {
+  .forgot-password-link {
     margin-top: 40px;
     margin-right: 120px;
     text-decoration: none;
@@ -216,9 +239,9 @@ const Div = styled.div`
     line-height: normal;
   }
 
-  .reg {
+  .register-link {
     text-decoration: none;
-    color: rgba(0, 0, 0, 0.37);
+    color: black;
   }
 
   a:hover {
@@ -226,38 +249,38 @@ const Div = styled.div`
     cursor: pointer;
     text-decoration: underline;
   }
-  .forgot:hover {
+  .forgot-password-link:hover {
     color: #c7db00;
     cursor: pointer;
     text-decoration: underline;
   }
 
-  .login:hover {
+  .login-button:hover {
     transform: translateY(-0.33em);
   }
 
-  .login:active {
+  .login-button:active {
     transform: translateY(0);
   }
 
-  .google,
-  .twitter:hover {
+  .google-login-button,
+  .twitter-login-button:hover {
     transform: translateY(-0.33em);
   }
 
-  .google,
-  .twitter:active {
+  .google-login-button,
+  .twitter-login-button:active {
     transform: translateY(0);
   }
-  .google:hover {
+  .google-login-button:hover {
     transform: translateY(-0.33em);
   }
 
-  .google:active {
+  .google-login-button:active {
     transform: translateY(0);
   }
 
-  .sec-2 img {
+  .image-container img {
     height: 100vh;
     object-fit: cover;
     justify-content: center;
@@ -265,20 +288,22 @@ const Div = styled.div`
 
   @media (max-width: 764px) {
     padding: 20px;
+
+  
   }
 
   @media (max-width: 1024px) {
     display: block;
 
-    .log {
+    .login-heading {
       margin-top: 0px;
     }
 
-    .sec-2 {
+    .image-container {
       display: none;
     }
 
-    .social-login {
+    .social-login-button {
       margin-bottom: 20px;
     }
   }
@@ -289,7 +314,7 @@ const Div = styled.div`
     display: flex;
     flex-direction: column;
   }
-  .rex1 {
+  .input-icon {
     width: 20px;
     position: absolute;
     z-index: 99;
@@ -324,7 +349,7 @@ const Div = styled.div`
     box-shadow: 0px 0px 0px 2px #242424;
     background-color: transparent;
   }
-  .me-icon {
+  .password-toggle {
     position: absolute;
     right: 0px;
     top: 10px;

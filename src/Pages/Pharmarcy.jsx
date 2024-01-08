@@ -1,13 +1,17 @@
 // import React from "react";
 import Navbar from "../components/nav-component/Navbar";
 import Styled from "styled-components";
-import Search from "../components/nav-component/Search";
+
 import CardSlider from "../components/Sliders/PharmarcySlider";
-import CardTest from "../components/Card-components/Card-test";
+import Card from "../components/Card-components/Card";
 import SearchCard from "../components/Card-components/SearchCard";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
+import LikeButton from "../components/LikeButton";
 
 const Pharmarcy = () => {
+  //this is the data that's in the review card currently
+
   const cardsData = [
     {
       name: "magret Mondeh",
@@ -77,6 +81,8 @@ const Pharmarcy = () => {
     },
   ];
 
+  //this is the data for the more option card
+
   const cardDataArray = [
     {
       imageSrc: "assets/pharm12.png",
@@ -137,14 +143,20 @@ const Pharmarcy = () => {
 
   return (
     <Div>
+      {/* this is the heading of the page */}
       <div className="header">
         <Navbar />
       </div>
-      <div className="search">
+      {/* <div className="search">
         <Search />
-      </div>
+      </div> */}
+      {/* the  heading section ends here */}
+
+      {/* main content of the page starts here */}
 
       <main>
+        {/* the section  for the logo and the stars  ends here*/}
+
         <div className="head">
           <div className="head-1">
             <img src="assets/pharm.png" alt="" />
@@ -158,25 +170,33 @@ const Pharmarcy = () => {
             <img src="assets/star.png" alt="" />
           </div>
         </div>
+        {/* the section  for the logo and the stars  ends here*/}
 
+        {/*         
+        this is the here slider section */}
         <div className="slider">
           <CardSlider />
         </div>
+
+        {/* this section is for the share, favourite and review  buttons */}
+
         <div className="share">
           <button>
             <span>Share </span>
             <img src="assets/share.png" alt="" />
           </button>
-          <button>
-            <span> favourite </span>
-            <img src="assets/favourite.png" alt="" />
-          </button>
+          <LikeButton />
 
-          <button>
-            <span> Write a Review</span>
-            <img src="assets/star.png" alt="" />
-          </button>
+          <Link to="/review" style={{ textDecoration: "none" }}>
+            <button>
+              <span> Write a Review</span>
+              <img src="assets/star.png" alt="" />
+            </button>
+          </Link>
         </div>
+        {/* the section  for the share, favourite and review  buttons ends here */}
+
+        {/* this section is for the menu and direction */}
 
         <div className="direc--photo">
           <div className="photos">
@@ -226,6 +246,9 @@ const Pharmarcy = () => {
           </div>
         </div>
         <br />
+        {/* menu and direction section ends here */}
+
+        {/* description section starts here */}
 
         <div className="description">
           <h1>Description</h1>
@@ -243,10 +266,13 @@ const Pharmarcy = () => {
           </div>
         </div>
       </main>
+      {/* description section ends here */}
+
+      {/* the review card section starts here */}
 
       <section className="carrd">
         {cardsData.map((data, index) => (
-          <CardTest
+          <Card
             key={index}
             name={data.name}
             title={data.title}
@@ -255,6 +281,11 @@ const Pharmarcy = () => {
           />
         ))}
       </section>
+      {/* the review card section ends here */}
+
+      {/* 
+    more option cards starts here */}
+
       <div className="last-sec">
         <h1>More Option for you</h1>
         <div className="cardss">
@@ -270,6 +301,8 @@ const Pharmarcy = () => {
           ))}
         </div>
       </div>
+
+      {/* more option card ends here */}
 
       <div className="footer">
         <Footer />
@@ -310,18 +343,21 @@ overflow:hidden;
     margin-bottom:70px;
 }
 
+
 .head{
   display:flex;
   justify-content:space-between;
    align-items:center;
+   margin-top:30px;
+   margin-bottom:10px;
 }
 
 .head-1{
   display:flex;
     gap:30px;
     align-items:center;
-    margin-left: 5px;
-    margin-top:30px;
+    margin-left: 15px;
+   
 }
 
 .head-1 img{
@@ -343,8 +379,8 @@ max-height:95px;
   flex-wrap:wrap;
   justify-content:center;
   gap:5px;
+  margin-right:10px;
 }
-
 
 
 .share{
@@ -366,9 +402,13 @@ max-height:95px;
   font: 500 21px "Josefin Sans", sans-serif;
   display:flex;
   align-items:center; 
+  gap:5px;
   padding:10px;
+  transition: .2s linear;
 }
-
+button:hover > img {
+  transform: scale(1.2);
+}
 .photos{
   display:flex;
   flex-direction:column;
@@ -694,8 +734,9 @@ margin-bottom:50px;
   gap:20px;
 }
 
-.drop{
-  display:none;
+.main-drop{
+  display: none;
+
 }
 
 .icon{

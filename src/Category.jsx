@@ -1,10 +1,11 @@
-import React from "react";
 import "./category.css";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 const Category = () => {
   return (
+    //this section is for the category section in the homepage
+
     <div>
       <h1>Category</h1>
 

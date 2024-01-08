@@ -4,56 +4,13 @@ const Footer = () => {
   return (
     <Div>
       <footer className="footer">
-        {/* <div className="list">
-                <ul className="list-1"> 
-                    <h3>Home</h3>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                </ul>
-                <ul className="list-1"> 
-                    <h3>Home</h3>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                </ul>
-                <ul className="list-1"> 
-                    <h3>Home</h3>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                    <li>Pope</li>
-                </ul>
-
-  
-                <div className="socials">
-                <h3>You can follow us on:</h3>
-                <div className="social-img">
-                <img src="assets/facebook.png" alt="" />
-                <img src="assets/twiter.png" alt="" />
-                <img src="assets/instagram.png" alt="" />
-                <img src="assets/link.png" alt="" />
-                <img src="assets/tiktok.png" alt="" />
-                </div>
-          
-            </div>
-            </div> */}
-
         <div className="one">
+        <section style={{display: 'flex', gap:20}}>
           <div className="logo">
             <img src="assets/loggo.jpg" alt="" width={90} height={90} />
           </div>
+          {/* 
+          the links in the footer section */}
 
           <div className="list">
             <h2>About</h2>
@@ -63,8 +20,11 @@ const Footer = () => {
               <li>Techbiz</li>
             </ul>
           </div>
+          </section>
 
-          <div className="list">
+
+<section style={{display: "flex", gap:20 }} >
+<div className="list">
             <h2>Discover</h2>
             <ul>
               <li>Techbiz</li>
@@ -83,6 +43,10 @@ const Footer = () => {
               <li>Techbiz</li>
             </ul>
           </div>
+
+</section>
+     
+          {/* social media links */}
 
           <div className="follow">
             <h2>Follow Us</h2>
@@ -111,25 +75,38 @@ export default Footer;
 const Div = styled.div`
   .footer {
     width: 100% !important;
-    height: 491px;
+   padding-top:100px;
     background: #c7db00;
     margin-top: 60px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-bottom:100px;
+
+
+
+  }
+
+  .logo{
+    margin-right:40px;
+  }
 
     .one {
       display: flex;
       justify-content: center;
-      gap: 100px;
+      gap: 60px;
       margin-top: 10px;
+      flex-wrap:wrap;
+      margin-bottom:20px;
+    
     }
 
     .list {
       display: flex;
       flex-direction: column;
       gap: 30px;
-      height: 297px;
+      margin-left:40px;
+
     }
 
     .list h2 {
@@ -183,7 +160,6 @@ const Div = styled.div`
     .two .copy {
       display: flex;
       gap: 5px;
-
       text-align: center;
       justify-content: center;
       color: #000;
@@ -194,7 +170,6 @@ const Div = styled.div`
       font-weight: 400;
       line-height: normal;
       align-items: center;
-      // position:relative;
     }
     .two .copy span {
       width: 20px;
@@ -206,13 +181,7 @@ const Div = styled.div`
       justify-content: center;
     }
 
-    // .two p img{
-    //   position:absolute;
-    //   top:1px;
-
-    // }
-
-    .socials img:hover {
+    img:hover {
       transform: scale(105%);
       animation: beatingHeart 1.2s infinite;
     }
@@ -238,5 +207,25 @@ const Div = styled.div`
         transform: scale(1);
       }
     }
+  }
+
+  @media(max-width: 768px){
+    
+
+    .one{
+  display: flex;
+  flex-wrap:wrap;
+  gap: 0px;
+  padding:0px;
+  margin:0px;
+  height:auto;
+    }
+
+    .list {
+    
+      gap: 30px;
+      margin-left:20px;
+  
+
   }
 `;

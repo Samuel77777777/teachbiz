@@ -8,6 +8,7 @@ import SearchCard from "../components/Card-components/SearchCard";
 import Navbar from "../components/nav-component/Navbar";
 
 const Find = () => {
+  // this is  to select multiple buttons all as they get clicked.
   const [selectedButtons, setSelectedButtons] = useState([]);
 
   const handleClick = (buttonName) => {
@@ -21,6 +22,9 @@ const Find = () => {
       setSelectedButtons((prevSelected) => [...prevSelected, buttonName]);
     }
   };
+
+  //  this is dummy data for the cards in this page
+
   const cardDataArray = [
     {
       imageSrc: "assets/card-img.png",
@@ -82,18 +86,22 @@ const Find = () => {
   return (
     <Div>
       <Navbar />
-      {/* <div className="logo">
-          <img src="techbiz.png" alt="" style={{ width: 84, height: 79 }} />
-        </div>
-        <Dropdown image="assets/find.png" />
 
-        <Buttons /> */}
 
+
+<div className="search">
+  <Search />
+</div>
       <main>
-        <div className="">
+        {/* <div className="">
           <Search />
-        </div>
+        </div> */}
+
+        {/* this the main section of this page   */}
+
+        {/* the checkbox at the side starts here */}
         <div className="fill">
+          {/* first checkbox section */}
           <div className="line-up">
             <h4 className="suggested">Suggested</h4>
             <form action="">
@@ -185,6 +193,8 @@ const Find = () => {
             </div>
             {/* form 2 */}
 
+            {/* last checkbox section */}
+
             <form action="" style={{ marginTop: 20 }}>
               <h4 className="suggested">Features</h4>
               <div className="check">
@@ -208,28 +218,41 @@ const Find = () => {
             </form>
           </div>
 
-          <div className="cardss">
-            {cardDataArray.map((data, index) => (
-              <SearchCard
-                key={index}
-                imageSrc={data.imageSrc}
-                title={data.title}
-                address={data.address}
-                phone={data.phone}
-                description={data.description}
-              />
-            ))}
-          </div>
+          {/* the checkbox at the side ends here */}
 
-          <div className="map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.2300359536!2d-13.275695224137722!3d8.47699909738354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xf04c481ad63930d%3A0x956661af6bc1a91b!2sWilkinson%20Road%2C%20Freetown!5e0!3m2!1sen!2ssl!4v1690645005165!5m2!1sen!2ssl"
-              width="500"
-              height="1347"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-            ></iframe>
+          {/* card section in this page */}
+
+
+          <div className="map-card-section">
+
+            <div className="cardss">
+              {cardDataArray.map((data, index) => (
+                <SearchCard
+                  key={index}
+                  imageSrc={data.imageSrc}
+                  title={data.title}
+                  address={data.address}
+                  phone={data.phone}
+                  description={data.description}
+                />
+              ))}
+            </div>
+            {/* card section ends here */}
+
+            {/* map section ends here */}
+
+            <div className="map-container">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.2300359536!2d-13.275695224137722!3d8.47699909738354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xf04c481ad63930d%3A0x956661af6bc1a91b!2sWilkinson%20Road%2C%20Freetown!5e0!3m2!1sen!2ssl!4v1690645005165!5m2!1sen!2ssl"
+                className="map"
+                height="1347"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+              ></iframe>
+            </div>
+
+            {/* map section ends here */}
           </div>
         </div>
       </main>
@@ -263,17 +286,24 @@ const Div = styled.div`
   main {
     margin-top: 2.81rem;
   }
-  .search {
-    border-radius: 15px;
-    border: 2px solid #c7db00;
-    background: #fff;
-  }
+  // .search {
+  //   border-radius: 15px;
+  //   border: 2px solid #c7db00;
+  //   background: #fff;
+  // }
 
   .fill {
     margin-top: 2.81rem;
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    gap: 300px;
+    width:100%;
+  }
+
+  .map-card-section {
+   display: flex;
+  gap: 50px;
+  width:100%
+
   }
 
   .line-up {
@@ -353,13 +383,57 @@ const Div = styled.div`
 
   cardss {
     gap: 10px;
+
   }
+
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    max-width:1000px;
+
+
+
+  }
+
+  .map-container {
+    width: 100%;
+
+  }
+
   .map {
-    max-width: 600px;
+    width: 100%;
   }
+
   .icon {
     color: black;
   }
+
+  .search{
+    display:none;
+  }
+
+
+  
+
+
+
+  
+  @media (max-width: 1024px) {
+    .fill {
+      margin-top: 2.81rem;
+      display: flex;
+      gap: 50px;
+      width:100%;
+    }
+
+
+
+
+  }
+
+
+
+
 
   @media (max-width: 765px) {
     .map {
@@ -369,12 +443,33 @@ const Div = styled.div`
       display: none;
     }
 
-    .input1 {
-      border: 2px solid #c7db00;
-    }
+    // .input1 {
+      // border: 2px solid #c7db00;
+    // }
 
     .drop {
       display: none;
     }
+
+    .main-drop{
+      display:none;
+    }
+
+    .map-container{
+      display:none;
+    }
+
+    .cardss{
+      margin:20px;
+
+    }
+    .search{
+      display:block;
+      margin:20px;
+    }
+
+
+
+
   }
 `;

@@ -24,11 +24,12 @@
 }
 
 .text {
-  margin-top: 380px;
+  margin-top: 300px;
   color: #fff;
   text-align: center;
   font: 700 50px "Josefin Sans", sans-serif;
   line-height: normal;
+  margin-right: 180px;
 }
 
 .download button {
@@ -40,8 +41,10 @@
   gap: 10px;
   background: #c7db00;
   position: absolute;
+  bottom: 10%;
   right: 70px;
   border: none;
+  border-radius: 8px;
   transform: translateY(-0.2em);
   transition: transform 0.1s ease;
 }
@@ -57,7 +60,8 @@
 @media (max-width: 768px) {
   .text {
     font-size: 35px;
-    margin-top: 280px;
+    margin-top: 350px;
+    margin-right: 0;
   }
 
   .download button {

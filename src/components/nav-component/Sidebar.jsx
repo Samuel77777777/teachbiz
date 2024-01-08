@@ -1,18 +1,60 @@
 // import React from 'react';
 import { styled } from 'styled-components';
-import Search from './Search';
+import Buttons from './Buttons';
+import { Link } from 'react-router-dom';
+
 
 const Sidebar = () => {
   return (
     <Div>
     <aside className="side">
-        <Search  className="search"/>
 
-        <div className="buttons">
-        <button className="login">Login</button>
-        <button className="signup">Sing up</button>
+
+
+     
+    <div className="downs">
+        <div className="drops">
+          <Link to="/resturant" className="btns">
+            Resturant
+          </Link>
+        </div>
+
+        {/* // Hotels */}
+        <div className="drops">
+          <Link to="/hotel" className="btns">
+            Hotels
+          </Link>
+    
+        </div>
+
+        {/* Pharmarcy */}
+
+        <div className="drops">
+          <Link to="/pharmarcy" className="btns">
+            Pharmarcy
+          </Link>
+    
+        </div>
+
+        {/* Ngo */}
+
+        <div className="drops">
+          <Link to="/ngo" className="btns">
+            NGO'S
+          </Link>
+    
+        </div>
       </div>
 
+      <br />
+
+
+    
+    
+      <Buttons />
+      
+
+      
     </aside>
 
 
@@ -29,89 +71,72 @@ const Div =  styled.div`
 
    
     aside{
-        background-color: red;
+        background-color:#c7db00 ;
         width: 400px;
         height: 100vh;
         right: 0%;
         box-shadow: 10px -5px 47px 0px rgba(0, 0, 0, 0);
         animation: myAnim 2s ease 0s 1 normal forwards;
+    }
 
-        
-.search {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  border-radius: 15px;
 
-  align-self: center;
-  flex-direction: column;
-  gap: 40px;
-}
+    .buttons{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      margin:10px;
+    }
 
-.input1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
- border: 2px solid black;
- background-color: white;
- border-radius: 15px;
- padding: 0px 10px;
- 
-}
-.input1 input {
-  outline: none;
-  border: none;
-  color: #000;
-  text-align: center;
-  font-size: 18px;
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 200;
-  padding: 30px 40px;
+    .login{
+color:black;
+border:1px solid white;
+    }
+    .signup{
+      color:black;
+      border:1px solid white;
+          }
+      
+
+
+    .downs {
+      display: flex;
+      flex-direction:column;
+      gap: 15px;
+      align-items: left;
+      justify-content: left;
+      flex-wrap: wrap;
+      padding:10px;
+
+
+    }
   
-}
+    .drops {
+      padding: 10px;
+      align-items: flex-start;
+      gap: 10px;
+      border-radius: 10px;
+      border: 1px solid #fff;
+      background: rgba(255, 255, 255, 0);
+      color: black;
+      text-align: center;
+      font-family: "Josefin" sans-serif;
+      font-size: 25px;
+      font-weight: 400;
+      margin-top: 5px;
+      cursor: pointer;
+      width:150px;
+    }
+  
+    .btns {
+      color: black;
+      text-align: center;
+      font: 400 20px "Josefin Sans", sans-serif;
+      line-height: normal;
+      background-color: transparent;
+      text-decoration: none;
+      align-items: center;
+    }
 
-.input2{
-    display: flex;
-  justify-content: center;
-  align-items: center;
- border: 2px solid black;
- background-color: white;
- border-radius: 15px;
- padding: 0px 10px;
- 
-}
-.input2 input {
-  outline: none;
-  border: none;
-  color: #000;
-  text-align: center;
-  font-size: 18px;
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 200;
-  padding: 30px 40px;
-}
-
-.img {
-  width: 18px;
-  height: 18px;
-  background-color: white;
-}
-.buttons{
-display:flex;
-flex-direction: column;
-gap: 20px;
-justify-content: center;
-
-}
-.login,.signup{
-    width: 200px;
-    margin: 0 auto;
-
-
-}
 
 
 @keyframes myAnim {
@@ -127,5 +152,9 @@ justify-content: center;
 }
     }
 
+
+
+
+    
 
 `;

@@ -1,23 +1,31 @@
 // import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
 
-const SearchCard = ({
-  imageSrc,
-  title,
-  address,
-  phone,
+// eslint-disable-next-line react/prop-types
+const SearchCard = ({ imageSrc, title, address, phone, description }) => {
+  const [status, setStatus] = useState(false);
 
-  description,
-}) => {
+  const handleStatus = () => {
+    setStatus(!status);
+  };
+
   return (
     <Div>
-      <div className="cardsss">
-        <div className="sec1">
-          <p>Open</p>
+      {/* this is the card in the find page  */}
+
+      <div className="card-header">
+        <div className="open-status" onClick={handleStatus}>
+          {!status ? (
+            <p className="open">Open</p>
+          ) : (
+            <p className="closed">closed</p>
+          )}
+   
         </div>
 
-        <div className="sec2">
-          <div className="sec2--1">
+        <div className="card-content">
+          <div className="left-content">
             <img src={imageSrc} alt="" />
             <div className="stars">
               <img src="assets/star.png" alt="" />
@@ -39,7 +47,7 @@ const SearchCard = ({
               </h5>
               <h5 className="phone">
                 <span>
-                  <img src="assets/location.png" alt="" />
+                  <img src="assets/phone.png" alt="" />
                 </span>{" "}
                 {phone}
               </h5>
@@ -69,17 +77,17 @@ const Div = styled.div`
   margin: 0;
   padding: 0;
 
-  .cardsss {
+  .card-header {
     display: flex;
     flex-direction: column;
-    max-width: 822px;
+    max-width: 650px;
     background: #fff;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     justify-content: center;
     margin-bottom: 20px;
   }
 
-  .sec1 p {
+  .open {
     text-align: right;
     color: #38c706;
     font: 500 16px "Josefin Sans", sans-serif;
@@ -87,10 +95,19 @@ const Div = styled.div`
     margin-bottom: 0px;
   }
 
-  .sec2 {
+  .closed {
+    text-align: right;
+    color: red;
+    font: 500 16px "Josefin Sans", sans-serif;
+    margin-right: 5px;
+    margin-bottom: 0px;
+  }
+
+  .card-content {
     display: flex;
     gap: 12px;
   }
+
   h5 {
     margin: 0px;
   }
@@ -138,13 +155,13 @@ const Div = styled.div`
     text-align: center;
     font: 300 12px "Josefin Sans", sans-serif;
     border-radius: 5px;
-    padding: 5px;
+    padding: 2px 10px;
     border: 1px solid rgba(0, 0, 0, 0.13);
     background: #ffffff;
     max-width: 60px;
   }
 
-  .sec2--1 {
+  .left-content {
     margin-left: 5px;
     display: flex;
     flex-direction: column;

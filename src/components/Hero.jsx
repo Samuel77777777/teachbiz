@@ -7,12 +7,16 @@ import Search from "./nav-component/Search";
 
 const Hero = () => {
   return (
+    //heading section
     <div className="main">
       <Navbar />
 
-      <div className="serc">
+      {/* <div className="serc">
         <Search />
-      </div>
+      </div> */}
+
+      {/* 
+    main content in the hero section */}
 
       <p className="text">
         The Best of Salone <br /> at your finger tip.

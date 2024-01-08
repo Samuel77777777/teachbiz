@@ -1,13 +1,19 @@
 // import React from "react";
 import Navbar from "../components/nav-component/Navbar";
 import Styled from "styled-components";
-import Search from "../components/nav-component/Search";
 import CardSlider from "../components/Sliders/ResturantSlider";
-import CardTest from "../components/Card-components/Card-test";
+import Card from "../components/Card-components/Card";
 import SearchCard from "../components/Card-components/SearchCard";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
+import LikeButton from "../components/LikeButton";
+
+// import { faHeart } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ResturantHompage = () => {
+  //this is the data that's in the review card currently
+
   const cardsData = [
     {
       name: "magret Mondeh",
@@ -77,6 +83,7 @@ const ResturantHompage = () => {
     },
   ];
 
+  //this is the data for the more option card
   const cardDataArray = [
     {
       imageSrc: "assets/card-img.png",
@@ -137,14 +144,16 @@ const ResturantHompage = () => {
 
   return (
     <Div>
+      {/* this is the heading of the page */}
       <div className="header">
         <Navbar />
       </div>
-      <div className="search">
-        <Search />
-      </div>
 
+      {/* the  heading section ends here */}
+
+      {/* main content of the page starts here */}
       <main>
+        {/* this section is for the logo and the stars */}
         <div className="head">
           <div className="head-1">
             <img src="assets/chicken.png" alt="" />
@@ -158,26 +167,31 @@ const ResturantHompage = () => {
             <img src="assets/star.png" alt="" />
           </div>
         </div>
+        {/* the section  for the logo and the stars  ends here*/}
 
+        {/*         
+        this is the here slider section */}
         <div className="slider">
           <CardSlider />
         </div>
+
+        {/* this section is for the share, favourite and review  buttons */}
         <div className="share">
           <button>
             <span>Share </span>
             <img src="assets/share.png" alt="" />
           </button>
-          <button>
-            <span> favourite </span>
-            <img src="assets/favourite.png" alt="" />
-          </button>
+          <LikeButton />
 
-          <button>
-            <span> Write a Review</span>
-            <img src="assets/star.png" alt="" />
-          </button>
+          <Link to="/review" style={{ textDecoration: "none" }}>
+            <button>
+              Write a Rewiew <img src="assets/star.png" alt="" />
+            </button>
+          </Link>
         </div>
+        {/* the section  for the share, favourite and review  buttons ends here */}
 
+        {/* this section is for the menu and direction */}
         <div className="direc--photo">
           <div className="photos">
             <h1 className="menu--head">Photos</h1>
@@ -226,6 +240,9 @@ const ResturantHompage = () => {
           </div>
         </div>
         <br />
+        {/* menu and direction section ends here */}
+
+        {/* description section starts here */}
 
         <div className="description">
           <h1>Description</h1>
@@ -250,10 +267,12 @@ const ResturantHompage = () => {
           </div>
         </div>
       </main>
+      {/* description section ends here */}
 
+      {/* the review card section starts here */}
       <section className="carrd">
         {cardsData.map((data, index) => (
-          <CardTest
+          <Card
             key={index}
             name={data.name}
             title={data.title}
@@ -262,6 +281,10 @@ const ResturantHompage = () => {
           />
         ))}
       </section>
+      {/* the review card section ends here */}
+      {/* 
+    more option cards starts here */}
+
       <div className="last-sec">
         <h1>More Option for you</h1>
         <div className="cardss">
@@ -277,6 +300,8 @@ const ResturantHompage = () => {
           ))}
         </div>
       </div>
+
+      {/* more option card ends here */}
 
       <div className="footer">
         <Footer />
@@ -321,14 +346,16 @@ overflow:hidden;
   display:flex;
   justify-content:space-between;
    align-items:center;
+   margin-top:30px;
+   margin-bottom:10px;
 }
 
 .head-1{
   display:flex;
     gap:30px;
     align-items:center;
-    margin-left: 5px;
-    margin-top:30px;
+    margin-left: 15px;
+   
 }
 
 .head-1 img{
@@ -350,6 +377,7 @@ max-height:95px;
   flex-wrap:wrap;
   justify-content:center;
   gap:5px;
+  margin-right:10px;
 }
 
 
@@ -375,6 +403,10 @@ max-height:95px;
   align-items:center; 
   gap:5px;
   padding:10px;
+  transition: .2s linear;
+}
+button:hover > img {
+  transform: scale(1.2);
 }
 
 .photos{
@@ -619,9 +651,17 @@ margin-bottom:50px;
 
 
   @media (max-width: 1024px) {
-    .cards {
+    .carrd {
+      margin:0 auto;
       grid-template-columns: repeat(2, 1fr);
       justify-content: center; /* Adjust spacing for laptop screens */
+    }
+    .direc--photo{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+
+      place-items:center;
     }
   }
 
@@ -632,7 +672,8 @@ margin-bottom:50px;
 
   @media (max-width: 768px) {
     overflow:hidden;
-    .cards {
+    .carrd  {
+      margin:20px;
       grid-template-columns: repeat(1, 1fr);
       justify-content: center; /* Adjust for smaller screens */
     }
@@ -680,6 +721,7 @@ margin-bottom:50px;
 .direction{
   justify-content:center;
   margin:0 auto;
+
 }
 
 
@@ -688,6 +730,7 @@ margin-bottom:50px;
   flex-direction:column;
   justify-content: space-between;
   margin-bottom:20px;
+  place-items:center;
 }
 
 .desc{
@@ -699,12 +742,20 @@ margin-bottom:50px;
 .cardss{
   display:flex;
   flex-direction:column;
+  justify-content:center;
   gap:20px;
 }
 
-.drop{
-  display:none;
+
+.main-drop{
+  display: none;
+
 }
+
+
+
+
+
 
 .icon{
   color:black;
@@ -721,8 +772,5 @@ margin-bottom:50px;
   position:center;
 
 }
-
-
-
   }
 `;

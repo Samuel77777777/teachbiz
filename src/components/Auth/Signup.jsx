@@ -4,81 +4,157 @@ import { faEye } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 const SignUp = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    phone: "",
+  });
+
+  const [fromErrors, setFormErrors] = useState({
+    username: "",
+    email: "",
+    password: "",
+    phone: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    //perform validation and set error message
+
+    const errors = {};
+
+    if (!formData.username) {
+      errors.username = "Username is required";
+    }
+    if (!formData.email) {
+      errors.email = "Email is required";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)
+    ) {
+      errors.email = "Invalid email address";
+    }
+    if (!formData.password) {
+      errors.password = "Password is required";
+    }
+    if (!formData.phone) {
+      errors.phone = "phone is required";
+    }
+
+    //if there are errors, update the formerrors state and return
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
+    //if there is no errors, you can submit the form data
+    console.log("form data submitted", formData);
+
+    setFormData({
+      username: "",
+      email: "",
+      password: "",
+      phone: "",
+    });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+
+    //clear the corresponding error message when the user types
+    setFormErrors({
+      ...fromErrors,
+      [name]: "",
+    });
+  };
+
+  // this is the state that handles the password eye toggle
+
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible((prevVisible) => !prevVisible);
   };
 
-  const {
-    reset,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-
-    reset();
-  };
-
   return (
     <Div>
-      <div className="form">
-        <h3 className="log">Sign Up</h3>
+      <div className="form-container">
+        <h3 className="form-title">Sign Up</h3>
 
-        <form className="form" onSubmit={handleSubmit(onSubmit)}>
-          {/* <div className="input_container"> */}
+        {/* sign up form */}
+        <form className="form-container" onSubmit={handleSubmit}>
+          {/* username input field */}
+
           <div className="input_container">
-            <img src="assets/password.png" alt="" className="rex1" width={20} />
+            <img
+              src="assets/password.png"
+              alt=""
+              className="input-icon"
+              width={20}
+            />
             <input
-              name="input-name"
+              name="username"
               placeholder="Username"
               type="text"
               className="input_field"
-              {...register("Username", {
-                required: "Username",
-              })}
+              value={formData.username}
+              onChange={handleInputChange}
             />
             <br />
-            <span className="error">{errors.email?.message}</span>
+            <span className="error">{fromErrors.username}</span>
           </div>
 
+          {/* Email input field */}
+
           <div className="input_container">
-            <img src="assets/password.png" alt="" className="rex1" width={20} />
+            <img
+              src="assets/email.png"
+              alt=""
+              className="input-icon"
+              width={20}
+            />
             <input
-              name="input-name"
+              name="email"
               placeholder="Email"
               type="text"
               className="input_field"
-              {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Invalid email address",
-                },
-              })}
+              value={formData.email}
+              onChange={handleInputChange}
             />
             <br />
-            <span className="error">{errors.email?.message}</span>
+            <span className="error">{fromErrors.email}</span>
           </div>
 
           {/* </div> */}
 
+          {/* password input field */}
+
           <div className="input_container">
-            <img src="assets/password.png" alt="" className="rex1" width={20} />
+            <img
+              src="assets/password1.png"
+              alt=""
+              className="input-icon"
+              width={20}
+            />
             <input
               placeholder="Password"
-              name="input-password"
+              name="password"
               className="input_field"
-              {...register("password", { required: "Password is required" })}
+              value={formData.password}
+              onChange={handleInputChange}
               type={passwordVisible ? "password" : "text"}
             />
-            <div onClick={togglePasswordVisibility} className="me-icon">
+            <div onClick={togglePasswordVisibility} className="password-toggle">
               {passwordVisible ? (
                 <FontAwesomeIcon icon={faEyeSlash} />
               ) : (
@@ -86,40 +162,48 @@ const SignUp = () => {
               )}
             </div>
             <br />
-            <span className="error"> {errors.password?.message}</span>
+            <span className="error">{fromErrors.password}</span>
           </div>
 
+          {/* phone input field */}
+
           <div className="input_container">
-            <img src="assets/password.png" alt="" className="rex1" width={20} />
-            <input
-              name="input-name"
-              placeholder="(+232 7573474)"
-              type="text"
-              className="input_field"
-              {...register("email", {
-                required: "Phone number is required",
-              })}
+            <PhoneInput
+              name="phone"
+              country={"us"}
+              type="tel"
+              className="phone_input"
+              value={formData.phone}
+              onChange={(phone) => setFormData({ ...formData, phone })}
+              inputProps={{
+                style: { width: 260 }, // Add the style here
+                className: "input_field", // You can also apply your class if needed
+                placeholder: "Phone", // Placeholder text
+              }}
             />
+
             <br />
-            <span className="error">{errors.email?.message}</span>
+            <span className="error">{fromErrors.phone}</span>
           </div>
 
           {/*
           {/* // icon goees */}
 
-          <button className="login" type="submit">
+          {/* submit button */}
+          <button className="submit-button" type="submit">
             Sign Up
           </button>
+
           <h4 style={{ marginBottom: 10 }}>
             If you dont have an account{" "}
-            <Link to="/login" className="reg">
-              Sign in
+            <Link to="/login" className="login-link">
+              Login here
             </Link>{" "}
           </h4>
         </form>
       </div>
 
-      <div className="sec-2">
+      <div className="image-container">
         <img src="assets/sign.png" alt="" />
       </div>
     </Div>
@@ -144,13 +228,13 @@ const Div = styled.div`
   transform: translate(-50%, -50%);
   overflow: hidden;
 
-  .sec-2 {
+  .image-container {
     width: 100%;
     height: 100%;
     overflow: hidden;
   }
 
-  .form {
+  .form-container {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -160,7 +244,7 @@ const Div = styled.div`
     gap: 10px;
   }
 
-  .log {
+  .form-title {
     color: #000;
     text-align: center;
     font-family: "inter", sans-serif;
@@ -171,7 +255,7 @@ const Div = styled.div`
     margin-bottom: 25px;
   }
 
-  .login {
+  .submit-button {
     width: 8.2rem;
     padding: 0.625rem 0.9375rem;
     margin-top: 50px;
@@ -198,9 +282,9 @@ const Div = styled.div`
     margin-bottom: 20px;
   }
 
-  .reg {
+  .login-link {
     text-decoration: none;
-    color: #c7db00;
+    color: black;
   }
 
   a:hover {
@@ -214,11 +298,11 @@ const Div = styled.div`
     text-decoration: underline;
   }
 
-  .login:hover {
+  .submit-button:hover {
     transform: translateY(-0.33em);
   }
 
-  .login:active {
+  .submit-button:active {
     transform: translateY(0);
   }
 
@@ -239,7 +323,7 @@ const Div = styled.div`
     transform: translateY(0);
   }
 
-  .sec-2 img {
+  .image-container img {
     height: 100vh;
     object-fit: cover;
     justify-content: center;
@@ -271,7 +355,7 @@ const Div = styled.div`
     display: flex;
     flex-direction: column;
   }
-  .rex1 {
+  .input-icon {
     width: 20px;
     position: absolute;
     z-index: 99;
@@ -306,7 +390,7 @@ const Div = styled.div`
     box-shadow: 0px 0px 0px 2px #242424;
     background-color: transparent;
   }
-  .me-icon {
+  .password-toggle {
     position: absolute;
     right: 0px;
     top: 10px;
@@ -344,48 +428,3 @@ const Div = styled.div`
     width: 100%;
   }
 `;
-
-// import React from "react";
-// import { useForm } from "react-hook-form";
-
-// const Login = () => {
-//   const {
-//     register,
-//     handleSubmit,
-//     formState: { errors },
-//   } = useForm({
-//     defaultValues: {
-//       firstName: "",
-//       lastName: "",
-//     },
-//   });
-//   console.log(errors);
-
-//   return (
-//     <div>
-//       <form
-//         action=""
-//         onSubmit={handleSubmit((data) => {
-//           console.log(data);
-//         })}
-//       >
-//         <input
-//           {...register("firstName", { required: "This is required" })}
-//           placeholder="First Name"
-//         />
-//         <p>{errors.firstName?.message}</p>
-//         <input
-//           {...register("lastName", {
-//             required: "This is required.",
-//             minLength: { value: 4, message: "Min Length 4" },
-//           })}
-//           placeholder="Last Name"
-//         />
-//         <p>{errors.lastName?.message}</p>
-//         <input type="submit" />
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Login;

@@ -9,13 +9,19 @@ import { useState } from "react";
 import Sidebar from "./Sidebar";
 import Buttons from "./Buttons";
 import { Link } from "react-router-dom";
+import NewSidebar from "./newSidebar";
+// import EditAccountModal from "../accountsettingcomponents/EditAccountModal";
 
 const Navbar = () => {
+  //  hamburger menu state
+
   const [show, setShow] = useState(false);
 
   const handleClick = () => {
     setShow(!show);
   };
+
+  let isLogedin = true;
 
   return (
     <div className="nav">
@@ -23,10 +29,23 @@ const Navbar = () => {
         <img src="assets/loggo.jpg" alt="" style={{ width: 84, height: 79 }} />
       </Link>
 
-      <div className="">
+      <div>
         <Dropdown />
       </div>
+
       <div className="buttons">
+        {/* {isLogedin == true ? (
+          <div className="account">
+            {" "}
+            <img src="assets/mainaccount.png" />
+            <div className="account-info">
+              <EditAccountModal />
+            </div>
+          </div>
+        ) : (
+        
+        )} */}
+
         <Buttons />
       </div>
 

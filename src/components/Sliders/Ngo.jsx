@@ -29,6 +29,8 @@ const CardSlider = () => {
     "assets/ngo5.png",
   ];
 
+  // making the slider responsive
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
